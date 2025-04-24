@@ -6,13 +6,11 @@
   <title>AI Portfolio Optimizer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
-      background: #f4f6f8;
+      background: #f7f9fc;
       color: #333;
     }
     header {
@@ -22,93 +20,96 @@
       text-align: center;
     }
     header h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin-bottom: 10px;
+      animation: fadeIn 1.2s ease-out;
     }
     header p {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       max-width: 600px;
       margin: 0 auto;
+      animation: fadeIn 2s ease-out;
     }
-
     .container {
-      max-width: 1000px;
-      margin: 40px auto;
+      max-width: 1100px;
+      margin: 50px auto;
       padding: 20px;
     }
 
-    section {
-      opacity: 1;
-      transition: clip-path 1.2s ease-out, opacity 1s ease-out, transform 0.6s ease;
-      transform: translateY(0);
-      clip-path: circle(150% at 50% 50%);
-      margin-bottom: 50px;
-    }
-
     section.fade {
+      clip-path: circle(0% at 50% 50%);
       opacity: 0;
       transform: translateY(30px);
-      clip-path: circle(0% at 50% 50%);
+      transition: clip-path 1.2s ease-out, opacity 1s ease-out, transform 0.6s ease;
     }
-
     section.fade.visible {
+      clip-path: circle(150% at 50% 50%);
       opacity: 1;
       transform: translateY(0);
-      clip-path: circle(150% at 50% 50%);
     }
 
     h2 {
       color: #1a73e8;
-      font-size: 1.6rem;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
     }
 
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+      gap: 30px;
     }
 
     .feature {
       background: white;
       border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      transition: transform 0.3s ease, border-radius 0.3s ease;
+      padding: 25px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
     }
 
     .feature:hover {
-      transform: scale(1.05);
-      border-radius: 20px;
+      transform: scale(1.03);
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     }
 
     .launch {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 30px;
     }
 
     .button {
       display: inline-block;
-      background: #1a73e8;
+      background-color: #1a73e8;
       color: white;
-      padding: 14px 28px;
+      padding: 15px 30px;
       text-decoration: none;
-      font-weight: bold;
-      border-radius: 10px;
-      transition: border-radius 0.4s ease, background 0.3s ease;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.4s ease, border-radius 0.4s ease;
     }
 
     .button:hover {
-      border-radius: 30px;
-      background: linear-gradient(to right, #0f59c9, #1a73e8);
+      border-radius: 50px;
+      background: linear-gradient(135deg, #0f59c9, #1a73e8);
     }
 
     footer {
-      background: #d8d8d8;
+      background: #e0e0e0;
       text-align: center;
-      padding: 15px;
+      padding: 20px;
       font-size: 0.9rem;
-      margin-top: 40px;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media screen and (max-width: 600px) {
+      header h1 { font-size: 2rem; }
     }
   </style>
 </head>
@@ -116,66 +117,67 @@
 
   <header>
     <h1>AI Portfolio Optimizer</h1>
-    <p>Intelligently allocate capital using AI and Finance theory</p>
+    <p>Transforming portfolio strategy using AI + Modern Finance</p>
   </header>
 
   <div class="container">
+    
     <section class="fade">
-      <h2>About the App</h2>
-      <p>This tool blends AI predictions and classic finance models to deliver optimal portfolio allocations based on your inputs.</p>
+      <h2>What is this App?</h2>
+      <p>This R-powered application combines traditional finance with machine learning to help investors allocate capital intelligently. Users input asset tickers (stocks, bonds, commodities), set the risk-free rate and horizon, then choose from three optimization models to generate optimal portfolios with visuals and statistics.</p>
     </section>
 
     <section class="fade">
-      <h2>Models Explained</h2>
+      <h2>Model Explanations</h2>
       <div class="features">
         <div class="feature">
           <h3>📊 Traditional MVO</h3>
-          <p>Uses historical variance and return to optimize based on the Efficient Frontier.</p>
+          <p>Based on Harry Markowitz’s theory, it assumes that historical returns and variances can be used to optimize portfolio weights for maximum return per unit of risk.</p>
         </div>
         <div class="feature">
-          <h3>🤖 AI-Enhanced</h3>
-          <p>Applies ML regression from H2O.ai to forecast future returns before optimizing.</p>
+          <h3>🧠 AI-Enhanced MVO</h3>
+          <p>Uses H2O.ai’s machine learning to estimate future returns and variances from historical patterns. This model adapts better to non-static market behavior.</p>
         </div>
         <div class="feature">
-          <h3>⚖️ Hybrid Model</h3>
-          <p>Combines both worlds: historical optimization refined with AI insights.</p>
+          <h3>🔁 Combined Model</h3>
+          <p>Merges predictions from AI with classical MVO constraints. This hybrid model balances traditional risk optimization with AI foresight for dynamic allocation.</p>
         </div>
       </div>
     </section>
 
     <section class="fade">
-      <h2>Features</h2>
+      <h2>What the App Does</h2>
       <ul>
-        <li>✔ Pulls historical price data</li>
-        <li>✔ Calculates risk, return, Sharpe ratio</li>
-        <li>✔ Visualizations: pie charts, heatmaps, risk/return plots</li>
-        <li>✔ Interactive portfolio reports</li>
-        <li>✔ Launch in-browser (no install)</li>
+        <li>✅ Pulls historical prices for your tickers</li>
+        <li>✅ Calculates expected return, volatility, Sharpe ratio</li>
+        <li>✅ Plots asset weights, cumulative returns, correlation heatmaps</li>
+        <li>✅ Visualizes risk vs return, allocation pie charts</li>
+        <li>✅ Shows portfolio stats: Sharpe ratio, expected return, standard deviation, total value</li>
+        <li>✅ Interactive, fast, and fully in-browser</li>
       </ul>
     </section>
 
     <section class="fade launch">
-      <h2>Launch It!</h2>
-      <a class="button" href="https://mwiine.shinyapps.io/2025aimvo/" target="_blank">Open App</a>
+      <h2>Ready to Optimize?</h2>
+      <a href="https://mwiine.shinyapps.io/2025aimvo/" target="_blank" class="button">Launch App</a>
     </section>
+
   </div>
 
   <footer>
-    &copy; 2025 Shedrack Mwiine | Built with R + H2O.ai + HTML
+    &copy; 2025 Shedrack Mwiine | Built with 💻 and 📈 using R, H2O, and GitHub Pages
   </footer>
 
   <script>
+    // Scroll reveal effect
+    const sections = document.querySelectorAll('.fade');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.2 });
 
-    document.querySelectorAll('.fade').forEach(section => {
-      observer.observe(section);
-    });
+    sections.forEach(section => observer.observe(section));
   </script>
 
 </body>

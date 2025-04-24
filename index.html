@@ -7,137 +7,139 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
---main-bg: #f3f4f7;
---accent: #1a73e8;
---card-bg: rgba(255, 255, 255, 0.7);
---glass-blur: blur(18px);
---text: #111;
+--main-bg: linear-gradient(135deg, #1a73e8, #0f59c9);
+--morph-color: rgba(255, 255, 255, 0.2);
+--glass-border: rgba(255, 255, 255, 0.3);
 }
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
-html, body {
+* { box-sizing: border-box; scroll-behavior: smooth; }
+body {
 font-family: 'Inter', sans-serif;
-background: var(--main-bg);
-color: var(--text);
-scroll-behavior: smooth;
+margin: 0;
+background: #f5f7fa;
+color: #2c3e50;
+overflow-x: hidden;
 }
 header {
-background: linear-gradient(135deg, #1a73e8, #0f59c9);
+background: var(--main-bg);
 color: white;
-padding: 100px 20px 80px;
+padding: 80px 20px;
 text-align: center;
+position: relative;
+overflow: hidden;
+}
+header::before {
+content: "";
+position: absolute;
+top: -20%;
+left: -20%;
+width: 200%;
+height: 200%;
+background: radial-gradient(circle at center, #ffffff20, #00000000);
+animation: pulseGlow 8s infinite alternate;
 }
 header h1 {
 font-size: 3rem;
 margin-bottom: 10px;
-animation: fadeSlide 1.2s ease-out forwards;
+opacity: 0;
+transform: translateY(20px);
+animation: morphIn 1.2s ease-out forwards;
 }
 header p {
 font-size: 1.2rem;
-max-width: 700px;
+max-width: 600px;
 margin: 0 auto;
 opacity: 0;
-animation: fadeSlide 2s ease-out forwards;
-animation-delay: 0.4s;
+transform: translateY(20px);
+animation: morphIn 1.8s ease-out forwards;
 }
 .container {
 max-width: 1100px;
-margin: 60px auto;
-padding: 0 20px;
+margin: 50px auto;
+padding: 20px;
 }
-
 section {
+background: white;
+margin-bottom: 60px;
+padding: 40px 30px;
+border-radius: 20px;
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
 opacity: 0;
-transform: translateY(40px);
-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-transition: all 1s ease;
-margin-bottom: 70px;
+transform: scale(0.97);
+transition: all 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+backdrop-filter: blur(10px);
 }
-
 section.visible {
 opacity: 1;
-transform: translateY(0);
-clip-path: polygon(0 0, 100% 5%, 95% 100%, 5% 95%);
+transform: scale(1);
 }
-
 h2 {
+color: #1a73e8;
+margin-bottom: 20px;
 font-size: 2rem;
-color: var(--accent);
-margin-bottom: 24px;
 }
-
 .features {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 gap: 30px;
 }
-
 .feature {
-background: var(--card-bg);
-backdrop-filter: var(--glass-blur);
-border-radius: 16px;
+background: var(--morph-color);
+border-radius: 15px;
 padding: 25px;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-transition: transform 0.4s ease, box-shadow 0.4s ease;
-border: 1px solid rgba(255, 255, 255, 0.4);
+box-shadow: inset 0 0 0 1px var(--glass-border);
+backdrop-filter: blur(20px);
+transition: transform 0.4s ease;
+position: relative;
 }
-
 .feature:hover {
-transform: scale(1.05);
-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+transform: scale(1.03);
 }
-
-ul {
-padding-left: 20px;
-line-height: 1.6;
-}
-
 .launch {
 text-align: center;
+margin-top: 30px;
 }
-
 .button {
-background: var(--accent);
+display: inline-block;
+background-color: #1a73e8;
 color: white;
-padding: 14px 34px;
-font-size: 1.1rem;
-font-weight: 600;
+padding: 15px 30px;
 text-decoration: none;
 border-radius: 12px;
-transition: all 0.4s ease;
-border: none;
-box-shadow: 0 4px 16px rgba(26, 115, 232, 0.3);
+font-weight: 600;
+font-size: 1.1rem;
+transition: all 0.3s ease;
 }
-
 .button:hover {
-transform: translateY(-3px);
 background: #0f59c9;
+transform: scale(1.05);
 }
-
 footer {
+background: #e0e0e0;
 text-align: center;
-background: #e1e1e1;
 padding: 20px;
 font-size: 0.9rem;
-margin-top: 60px;
 }
 
-@keyframes fadeSlide {
-from {
-opacity: 0;
-transform: translateY(30px);
-}
+@keyframes morphIn {
 to {
 opacity: 1;
 transform: translateY(0);
 }
 }
+@keyframes pulseGlow {
+0% {
+transform: scale(1);
+opacity: 0.3;
+}
+100% {
+transform: scale(1.3);
+opacity: 0.1;
+}
+}
 
 @media screen and (max-width: 600px) {
-header h1 { font-size: 2.2rem; }
+header h1 { font-size: 2rem; }
+section { padding: 20px; }
 }
 </style>
 </head>
@@ -152,7 +154,7 @@ header h1 { font-size: 2.2rem; }
 
 <section class="fade">
 <h2>About This App</h2>
-<p>This intelligent tool optimizes your portfolio using AI-enhanced methods, blending classical financial theory with machine-learned insights for better capital allocation.</p>
+<p>This intelligent tool optimizes your portfolio using AI-enhanced methods to blend classical financial theory with machine-learned insights for better capital allocation.</p>
 </section>
 
 <section class="fade">
@@ -160,15 +162,15 @@ header h1 { font-size: 2.2rem; }
 <div class="features">
 <div class="feature">
 <h3>Traditional Mean-Variance</h3>
-<p>Uses historical returns and variances to determine the most efficient allocation of assets based on risk-return trade-offs.</p>
+<p>Uses historical returns and variances to determine the efficient allocation of assets based on risk-return trade-offs.</p>
 </div>
 <div class="feature">
 <h3>AI-Enhanced Forecasting</h3>
-<p>Applies machine learning to uncover nonlinear patterns and forecast return distributions with higher precision.</p>
+<p>Applies machine learning to uncover long-term return patterns and forecast return distributions with higher precision.</p>
 </div>
 <div class="feature">
 <h3>Hybrid Model</h3>
-<p>Combines the rigidity of financial theory with the flexibility of AI to create a robust, adaptive investment strategy.</p>
+<p>Combines the rigidity of financial theory with the flexibility of AI to create a robust adaptive investment strategy.</p>
 </div>
 </div>
 </section>
@@ -184,28 +186,27 @@ header h1 { font-size: 2.2rem; }
 </section>
 
 <section class="fade launch">
-<h2>Launch the Optimizer</h2>
+<h2>Ready to Optimize?</h2>
 <a href="https://mwiine.shinyapps.io/2025aimvo/" target="_blank" class="button">Open Web App</a>
 </section>
 
 </div>
 
 <footer>
-&copy; 2025 Shedrack Mwiine | Built with R, H2O.ai, HTML & Vision
+&copy; 2025 Shedrack Mwiine | Built with R, H2O, HTML & Vision
 </footer>
 
 <script>
+// Morph-like reveal animation
+const sections = document.querySelectorAll('.fade');
 const observer = new IntersectionObserver(entries => {
 entries.forEach(entry => {
 if (entry.isIntersecting) {
 entry.target.classList.add('visible');
 }
 });
-}, { threshold: 0.2 });
-
-document.querySelectorAll('.fade').forEach(section => {
-observer.observe(section);
-});
+}, { threshold: 0.15 });
+sections.forEach(section => observer.observe(section));
 </script>
 
 </body>
